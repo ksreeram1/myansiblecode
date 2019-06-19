@@ -1,0 +1,21 @@
+---
+- name: Learning prompting
+  hosts: ~^fut
+
+  vars_prompt:
+          - name: yourpassword #this is the var to define
+            prompt: "what is your password"
+            private: yes #do not echo
+            confirm: yes #type it twice
+            default: "qwerty" #default value for the variable "your password"
+            encrypt: sha512_crypt
+
+  tasks:
+           - name: print to screen
+             debug:
+                    var: yourpassword
+
+           - name: copy into a remore file
+             copy:
+                     content: "{yourpassword{}}"
+                     dest: ~/yourpass.txt

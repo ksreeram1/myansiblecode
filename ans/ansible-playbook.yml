@@ -1,0 +1,10 @@
+---
+- name: My First playbook
+  hosts: futurama
+
+  tasks:
+          - name: create a file
+            file:
+                    path: ~/sshworkedansible.txt
+                    state: touch
+

@@ -1,0 +1,6 @@
+[futurama]
+bender ansible_host=10.10.2.3 ansible_user=bender ansible_become_pass=alta3
+fry ansible_host=10.10.2.4 ansible_user=fry
+farnsworth ansible_host=10.10.2.6 ansible_user=farnsworth
+[futurama:vars]
+ansible_become_pass=alta3

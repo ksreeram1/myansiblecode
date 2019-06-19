@@ -1,0 +1,16 @@
+---
+- name: Learning about conditionals in Ansible
+  gather_facts: yes
+  hosts: futurama
+  become: yes
+
+  tasks:
+          - name: install software with apt
+            apt:
+                    name: figlet
+            when: ansible_distribution == "Ubuntu"
+
+          - name: install software with yum 
+            yum:
+                 name: figlet
+            when: ansible_distribution == "CentOS"            
