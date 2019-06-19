@@ -1,0 +1,31 @@
+---
+ - name: need to copy patches
+   hosts: futurama
+
+   tasks:
+         - name: create a directory
+           file:
+                 state: directory
+                 path: ~/patches/
+
+         - name: download our patches
+           get_url: 
+                  url: https://alta3.com/static/files/trouble.sh
+                  dest: "~/patches/{{ inventory_hostname }}.patch"
+           register: myurl
+
+         - name: what the heck is myurl json
+           debug:
+                   var: myurl
+
+         - name: register results from data lookup
+           command: date
+           register: results
+
+         - name: what are the results
+           debug:
+                  var: results.stdout
+
+         - name: run the patch
+           command: "sh ~/patches/{{inventory_hostname}}.patch"
+           when : "'Tues' in results.stdout"        
